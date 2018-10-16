@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
   namespace :api do
-   get '/product1' => 'products#super_sponge'
- end
+   get '/products' => 'products#index'
+   post '/products' => 'products#create'
+   # patch '/products:id' => 'products#update'
+  end
 end
