@@ -6,3 +6,6 @@ Rails.application.routes.draw do
    patch '/products:id' => 'products#update'
   end
 end
+
+# product3 = Product.new(name: "megacloth", price: 50, image_url: "www.image.com", description: "the best")
+# product3.save

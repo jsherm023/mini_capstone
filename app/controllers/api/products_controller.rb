@@ -6,8 +6,12 @@ class Api::ProductsController < ApplicationController
 
   def create
     @product = Product.new(name: "magna bucket", price: 15, image_url: "www.magnabucket.com", description: "Best bucket you ever seen")
-    @product.save
-    render "show.json.jbuilder"
+
+    if @product.save
+      render "show.json.jbuilder"
+    else
+      render "error.json.jbuilder"  
+    end
   end
 
   def update
