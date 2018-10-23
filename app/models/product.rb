@@ -1,6 +1,10 @@
 class Product < ApplicationRecord
   # validates :name, :price, presence: true
   # validates :name, uniquness: true
+  def supplier
+    Supplier.find_by(id: supplier_id)
+  end
+  
   def ls_discounted
     if price < 10
       return true

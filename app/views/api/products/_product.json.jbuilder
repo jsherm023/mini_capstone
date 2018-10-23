@@ -6,3 +6,4 @@ json.description product.description
 json.tax product.tax
 json.total product.total
 json.ls_discounted product.ls_discounted
+json.name_of_supplier product.supplier.name
