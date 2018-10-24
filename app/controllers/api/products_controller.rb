@@ -20,7 +20,7 @@ class Api::ProductsController < ApplicationController
     product_id = params[:id]
     @product = Product.find_by(id: product_id)
     @product.name
-    @product.image_url
+    @product.image
     @product.description
   end
 
