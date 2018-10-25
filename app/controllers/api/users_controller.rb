@@ -1,5 +1,7 @@
 class Api::UsersController < ApplicationController
     def create
+      p 'current_user'
+      p current_user
     user = User.new(
       name: params[:name],
       email: params[:email],
