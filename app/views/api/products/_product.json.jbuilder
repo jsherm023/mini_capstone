@@ -8,3 +8,4 @@ json.ls_discounted product.ls_discounted
 json.name_of_supplier product.supplier.name
 json.name_of_image_url product.image
 json.user_info current_user
+json.product_category product.category_ids
