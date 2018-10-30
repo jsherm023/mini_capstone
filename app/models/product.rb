@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   # validates :name, :price, presence: true
   # validates :name, uniquness: true
+  has_many :category_products
   has_many :orders
   belongs_to :supplier, optional: true
   has_many :images
