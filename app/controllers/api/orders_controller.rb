@@ -1,26 +1,38 @@
 class Api::OrdersController < ApplicationController
   def create
-    product = Product.find_by(id: params[:product_id])
+    carted_products = CartedProduct.where(status: "Carted")
+    @carted_products = carted_products.where(user_id: current_user.id)
+    subtotal = 0
+    tax = 0
+    total = 0
+    @carted_products.each do |carted_product|
+      product = carted_product.product
+      subtotal += product.price * carted_product.quantity
+      tax += product.price * 0.09 * carted_product.quantity
+      total += subtotal + tax
+      carted_product.status = "purchased"      
+    end
+
+    product = Product.find_by(id: params[:product_id]) 
     p "product"
     p product
     price = product.price
 
-    calculated_subtotal = params[:quantity].to_i * price
-    calculated_tax = calculated_subtotal *0.09
-    calculated_total = calculated_subtotal + calculated_tax  
-
     @order = Order.new(
-      product_id: params[:product_id],
       user_id: current_user.id,
-      quantity: params[:quantity],
-      product_id: params[:product_id],
-      subtotal: calculated_subtotal,
-      total: calculated_total,
-      tax: calculated_tax
+      subtotal: subtotal,
+      total: total,
+      tax: tax
       )
-    # @order.save
-    p @order.errors.full_messages
-    render 'show.json.jbuilder'
+    if @order.save
+      @carted_products.each do |carted_product|
+        carted_product.order_id = @order.id
+        carted_product.save
+    # p @order.errors.full_messages        
+      end
+
+    end
+    render "show.json.jbuilder"
   end
 
   def index

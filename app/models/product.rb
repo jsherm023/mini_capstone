@@ -5,7 +5,6 @@ class Product < ApplicationRecord
   has_many :categories, through: :category_products
   has_many :carted_products
   has_many :orders, through: :carted_products #keep an eye on
-  has_many :orders
   belongs_to :supplier, optional: true
   has_many :images
   validates :name, presence: true
