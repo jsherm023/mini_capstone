@@ -1,0 +1,10 @@
+<h3>Here is the edit form</h3>
+
+<form action="/products/<%= @product.id %>" method="post">
+  <input type="hidden" name="_method" value="patch">
+  <p>Enter your product name<input type/"text" value="<% @product.name%>" name="name"></p>
+  <p>Enter your product description<input type/"text" value="<% @product.description%>" name="description"></p>
+
+  <input type="submit">
+
+</form>
